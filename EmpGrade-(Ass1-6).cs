@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace C_programs
 {
-    class EmpDetails
+    class EmpGrade
     {
         static void Main()
         {
