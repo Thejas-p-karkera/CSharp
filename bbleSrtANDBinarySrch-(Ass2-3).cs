@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace cSharp_ass_2
+namespace C_programs
 {
-    class bbleSrtANDBinarySrch
+    internal class BbleSrtANDBinarySrch
     {
         static void Main(String[] args)
         {
-            int []arr = new int[args.Length];
+            int[] arr = new int[args.Length];
 
             for (int i = 0; i < args.Length; i++)
             {
@@ -23,7 +25,7 @@ namespace cSharp_ass_2
             Console.Write("The numbers in the array: ");
             for (int i = 0; i < args.Length; i++)
             {
-                Console.Write(arr[i]+" ");
+                Console.Write(arr[i] + " ");
             }
 
             bubbleSort(arr);
@@ -36,27 +38,28 @@ namespace cSharp_ass_2
                 return;
             }
 
-            
+
 
             binarySearch(arr, ele);
         }
 
-      
+
         static void bubbleSort(int[] arr)
         {
-            //sorting
-
-            for (int i = 0; i < arr.Length-1; i++)
+            int counter = 1;
+            while(counter < arr.Length)
             {
-                for (int j = i+1; j < arr.Length; j++)
+                for(int i = 0; i < arr.Length-counter; i++)
                 {
-                    if (arr[j] < arr[i])
+                    if (arr[i] > arr[i+1])
                     {
-                        int temp = arr[j];
-                        arr[j] = arr[i];
-                        arr[i] = temp;
+                        int temp = arr[i];
+                        arr[i] = arr[i+1];
+                        arr[i+1] = temp;
                     }
                 }
+                counter++;
+
             }
 
             Console.Write("\nThe array after sorting: ");
@@ -70,23 +73,24 @@ namespace cSharp_ass_2
         {
             int st = 0;
             int end = arr.Length - 1;
-            int mid;
+            //int mid;
 
             while (st <= end)
             {
-                mid = (st + end) / 2;
+                int mid = (st + end) / 2;
 
-                if (ele > mid)
+                if (ele > arr[mid])
                 {
                     st = mid + 1;
                 }
-                else if (ele < mid)
+                else if (ele < arr[mid])
                 {
                     end = mid - 1;
                 }
                 else
                 {
-                    Console.WriteLine(ele + " is present in the array at " + arr[mid]);
+                    Console.WriteLine(ele + " is present in the array at " + mid);
+                    return;
                 }
             }
             Console.WriteLine(ele + " is not present in the array");
