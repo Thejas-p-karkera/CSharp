@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace C_programs
+namespace cSharp_ass_2
 {
-    internal class BbleSrtANDBinarySrch
+    class bbleSrtANDBinarySrch
     {
         static void Main(String[] args)
         {
-            int[] arr = new int[args.Length];
+            int []arr = new int[args.Length];
 
             for (int i = 0; i < args.Length; i++)
             {
@@ -23,9 +21,9 @@ namespace C_programs
             }
 
             Console.Write("The numbers in the array: ");
-            for (int i = 0; i < args.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
-                Console.Write(arr[i] + " ");
+                Console.Write(arr[i]+" ");
             }
 
             bubbleSort(arr);
@@ -38,30 +36,30 @@ namespace C_programs
                 return;
             }
 
-
-
+            
             binarySearch(arr, ele);
         }
 
-
+      
         static void bubbleSort(int[] arr)
         {
-            int counter = 1;
-            while(counter < arr.Length)
+            //sorting
+            int count = 1;
+            while (count < arr.Length)
             {
-                for(int i = 0; i < arr.Length-counter; i++)
+                for (int i = 0; i < arr.Length - count; i++)
                 {
-                    if (arr[i] > arr[i+1])
+                    if(arr[i+1] < arr[i])
                     {
                         int temp = arr[i];
-                        arr[i] = arr[i+1];
-                        arr[i+1] = temp;
+                        arr[i] = arr[i + 1];
+                        arr[i + 1] = temp;
                     }
                 }
-                counter++;
-
+                count++;
             }
-
+            
+            
             Console.Write("\nThe array after sorting: ");
             for (int i = 0; i < arr.Length; i++)
             {
@@ -73,7 +71,6 @@ namespace C_programs
         {
             int st = 0;
             int end = arr.Length - 1;
-            //int mid;
 
             while (st <= end)
             {
