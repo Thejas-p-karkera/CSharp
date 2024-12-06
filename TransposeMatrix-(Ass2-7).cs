@@ -1,94 +1,96 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace C_programs
+namespace cSharp_ass_2
 {
-    internal class TransposeMatrix
+    class bbleSrtANDBinarySrch
     {
         static void Main(String[] args)
         {
-            Console.Write("Enter the value for N: ");
-            int n;
-            if (!int.TryParse(Console.ReadLine(), out n))
-            {
-                Console.WriteLine("Enter a valid number");
-            }
+            int []arr = new int[args.Length];
 
-            Console.Write("Enter the value for M: ");
-            int m;
-            if (!int.TryParse(Console.ReadLine(), out m))
+            for (int i = 0; i < args.Length; i++)
             {
-                Console.WriteLine("Enter a valid number");
-            }
-
-            int[,] arr1 = new int[n, m];
-
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
+                if (!int.TryParse(args[i], out arr[i]))
                 {
-                    Console.Write("Enter " + j + "th element for " + i + "th row: ");
-                    arr1[i, j] = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter a valid number in command line arguments.");
+                    return;
                 }
+                //arr[i] = args[i];
             }
 
-            Console.WriteLine("The Original matrix is: ");
-            for (int i = 0; i < n; i++)
+            Console.Write("The numbers in the array: ");
+            for (int i = 0; i < arr.Length; i++)
             {
-                for (int j = 0; j < m; j++)
+                Console.Write(arr[i]+" ");
+            }
+
+            bubbleSort(arr);
+
+            int ele;
+            Console.Write("\nEnter the element to search: ");
+            if (!int.TryParse(Console.ReadLine(), out ele))
+            {
+                Console.WriteLine("Enter a valid number.");
+                return;
+            }
+
+            
+            binarySearch(arr, ele);
+        }
+
+      
+        static void bubbleSort(int[] arr)
+        {
+            //sorting
+            int count = 1;
+            while (count < arr.Length)
+            {
+                for (int i = 0; i < arr.Length - count; i++)
                 {
-                    Console.Write(arr1[i, j]+" ");
+                    if(arr[i+1] < arr[i])
+                    {
+                        int temp = arr[i];
+                        arr[i] = arr[i + 1];
+                        arr[i + 1] = temp;
+                    }
                 }
-                Console.WriteLine();
+                count++;
             }
-
-            //Transpose the matrix
-            int[,] arr2 = new int[m, n];
-            for (int i = 0; i < n; i++)
+            
+            
+            Console.Write("\nThe array after sorting: ");
+            for (int i = 0; i < arr.Length; i++)
             {
-                for (int j = 0; j < m; j++)
-                {
-                    arr2[j, i] = arr1[i, j];
-                }
-            }
-
-            Console.WriteLine("The transpose of the Matrix is: ");
-            for (int i = 0; i < m; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    Console.Write(arr2[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-
-            if(symmetricCheck(arr1, arr2,  n,  m))
-            {
-                Console.WriteLine("Matrix is symmetric");
-            }
-            else
-            {
-                Console.WriteLine("Matrix is not symmetric");
+                Console.Write(arr[i] + " ");
             }
         }
 
-        static bool symmetricCheck(int[,] arr1, int[,] arr2, int n, int m)
+        static void binarySearch(int[] arr, int ele)
         {
-            for (int i = 0; i < n; i++)
+            int st = 0;
+            int end = arr.Length - 1;
+
+            while (st <= end)
             {
-                for (int j = 0; j < m; j++)
+                int mid = (st + end) / 2;
+
+                if (ele > arr[mid])
                 {
-                    if (arr1[j, i] == arr2[i, j])
-                    {
-                        return true;
-                    }
+                    st = mid + 1;
+                }
+                else if (ele < arr[mid])
+                {
+                    end = mid - 1;
+                }
+                else
+                {
+                    Console.WriteLine(ele + " is present in the array at " + mid);
+                    return;
                 }
             }
-            return false;
+            Console.WriteLine(ele + " is not present in the array");
         }
     }
 }
