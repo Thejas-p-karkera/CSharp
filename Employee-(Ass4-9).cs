@@ -1,8 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace C_programs
 {
@@ -34,8 +32,10 @@ namespace C_programs
         }
         public override void Display()
         {
-            Console.WriteLine("Programmer Information:");
-            Console.WriteLine("Name: " + name + ", ID: " + id+", Programming Language: "+programmingLanguage);
+            Console.WriteLine("\nProgrammer Information:");
+            Console.WriteLine("Name: " + name);
+            Console.WriteLine("ID: " + id);
+            Console.WriteLine("Programming Language: " + programmingLanguage);
         }
     }
 
@@ -52,7 +52,9 @@ namespace C_programs
         public override void Display()
         {
             Console.WriteLine("Manager Information:");
-            Console.WriteLine("Name: " + name + ", ID: " + id+", Team Size: "+teamSize);
+            Console.WriteLine("Name: " + name);
+            Console.WriteLine("ID: " + id);
+            Console.WriteLine("Team Size: " + teamSize);
         }
     }
 
